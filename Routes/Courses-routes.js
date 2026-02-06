@@ -8,11 +8,11 @@ const userRoles = require("../Utils/userRoles.js");
 
 router
   .route("/")
-  .get(courseController.getAllCourses)
+  .get(verfiyToken,courseController.getAllCourses)
   .post(verfiyToken,allowed(userRoles.ADMIN, userRoles.MANGER),validationSchema(), courseController.addNewCourse);
 
 router.route("/:courseId")
-  .get(courseController.getCourse)
+  .get(verfiyToken,courseController.getCourse)
   .patch( verfiyToken,allowed(userRoles.ADMIN,userRoles.MANGER),courseController.editCourses)
   .delete(verfiyToken,allowed(userRoles.ADMIN,userRoles.MANGER),courseController.deleteCourse)
 
